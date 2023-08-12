@@ -1,16 +1,27 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using AppMedicine.Views;
 
 namespace AppMedicine
 {
     public partial class App : Application
     {
+        public static String DbName;
+        public static String DbPath;
         public App()
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new PagePrincipal();
+        }
+
+        public App(string dbPath, string dbName)
+        {
+            InitializeComponent();
+            App.DbName = dbName;
+            App.DbPath = dbPath;
+            MainPage = new PagePrincipal();
         }
 
         protected override void OnStart()

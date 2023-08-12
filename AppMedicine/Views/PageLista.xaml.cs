@@ -9,12 +9,12 @@ using Xamarin.Forms.Xaml;
 
 namespace AppMedicine.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PageHome : ContentPage
-    {
-        public PageHome()
-        {
-            InitializeComponent();
-        }
-    }
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class PageLista : ContentPage
+	{
+		public PageLista ()
+		{
+			InitializeComponent ();
+		}
+	}
 }

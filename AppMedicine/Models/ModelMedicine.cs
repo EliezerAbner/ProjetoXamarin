@@ -18,8 +18,10 @@ namespace AppMedicine.Models
         public string dataInicio { get; set; }
         [NotNull]
         public string dataFinal { get; set; }
-        [NotNull]
         public string observacoes { get; set; }
+        [NotNull]
+        public string horarios { get; set; }
+        
 
         public ModelMedicine()
         {
@@ -29,6 +31,7 @@ namespace AppMedicine.Models
             this.dataInicio = "";
             this.dataFinal = "";
             this.observacoes = "";
+            this.horarios = "";
         }
     }
 }
