@@ -19,22 +19,26 @@ namespace AppMedicine.Views
 
         private void btnCadastrar_Clicked(object sender, EventArgs e)
         {
-
+            Detail = new NavigationPage(new PageCadastro());
+            IsPresented = false;
         }
 
         private void btnHoje_Clicked(object sender, EventArgs e)
         {
-
+            Detail = new NavigationPage(new PageLista(false));
+            IsPresented = false;
         }
 
         private void btnListarTudo_Clicked(object sender, EventArgs e)
         {
-
+            Detail = new NavigationPage(new PageLista(true));
+            IsPresented = false;
         }
 
         private void btnSobre_Clicked(object sender, EventArgs e)
         {
-
+            Detail = new NavigationPage(new PageSobre());
+            IsPresented = false;
         }
     }
 }

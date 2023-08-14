@@ -3,36 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AppMedicine.Models;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace AppMedicine.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class PageLista : ContentPage
+	public partial class PageCadastro : ContentPage
 	{
-		public PageLista (bool listaTudo)
+		public PageCadastro ()
 		{
 			InitializeComponent ();
-			if (listaTudo)
-			{
-				listarTudo();
-			}
-			else
-			{
-                listarHoje();
-            }
 		}
 
-		public void listarHoje()
-		{
+        private void DateSelected(object sender, DateChangedEventArgs e)
+        {
 
-		}
+        }
 
-		public void listarTudo()
-		{
+        private void btnAddHorarios_Clicked(object sender, EventArgs e)
+        {
 
-		}
-	}
+        }
+    }
 }

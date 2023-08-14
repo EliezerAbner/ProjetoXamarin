@@ -15,6 +15,8 @@ namespace AppMedicine.Models
         [NotNull]
         public float quantidade { get; set; }
         [NotNull]
+        public string gotas_Comprimidos { get; set; }
+        [NotNull]
         public string dataInicio { get; set; }
         [NotNull]
         public string dataFinal { get; set; }

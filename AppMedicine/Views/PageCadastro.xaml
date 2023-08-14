@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppMedicine.Views.PageCadastro"
+             Title="Cadastro">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry x:Name="txtCodigo" IsVisible="False" IsEnabled="False"/>
+            <Entry x:Name="txtNomeRemedio" Keyboard="Default" Placeholder="Insira o nome do remédio"/>
+            
+            <StackLayout Orientation="Horizontal">
+                <Entry x:Name="txtQuantidade" Keyboard="Numeric" Placeholder="Insira a quantidade"/>
+                <Picker Title="Gotas/Comprimidos">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Comprimidos</x:String>
+                            <x:String>Gotas</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Data de Início" FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
+                <DatePicker x:Name="dpInicial" Format="D" DateSelected="DateSelected"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Data Final" FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
+                <DatePicker x:Name="dpFinal" Format="D" DateSelected="DateSelected"/>
+            </StackLayout>
+
+            <StackLayout>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Horário 1: " FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
+                    <TimePicker x:Name="tpHorario1" Format="T"/>
+                </StackLayout>
+                
+                <ListView ItemsSource="{Binding Names}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Label Text="{Binding lblName}"/>
+                                <TimePicker x:Name="{Binding count}" Format="T"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+            <Button x:Name="btnAddHorarios" Text="Adicionar Horários" FontAttributes="Bold" CornerRadius="20" Clicked="btnAddHorarios_Clicked"/>
+
+            <Editor x:Name="txtObservacoes" Placeholder="Observações Extras"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
