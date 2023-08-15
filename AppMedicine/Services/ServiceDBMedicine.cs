@@ -14,6 +14,8 @@ namespace AppMedicine.Services
         public ServiceDBMedicine(string dbPath)
         {
             if (dbPath == "") dbPath = App.DbPath;
+            conn = new SQLiteConnection(dbPath);
+            conn.CreateTable<ModelMedicine>();
         }
 
         public void Inserir(ModelMedicine medicine)

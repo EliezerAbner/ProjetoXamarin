@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppMedicine.Views.PageCadastro"
-             Title="Cadastro">
+             Title="Novo Remédio">
     <ContentPage.Content>
         <StackLayout>
             <Entry x:Name="txtCodigo" IsVisible="False" IsEnabled="False"/>
-            <Entry x:Name="txtNomeRemedio" Keyboard="Default" Placeholder="Insira o nome do remédio"/>
+            <Entry x:Name="txtNomeRemedio" Keyboard="Default" Placeholder="Insira o nome do remédio" Margin="0,30,0,0"/>
             
             <StackLayout Orientation="Horizontal">
                 <Entry x:Name="txtQuantidade" Keyboard="Numeric" Placeholder="Insira a quantidade"/>
@@ -20,21 +20,19 @@
                 </Picker>
             </StackLayout>
 
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Data de Início" FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
-                <DatePicker x:Name="dpInicial" Format="D"/>
-            </StackLayout>
+            <Editor x:Name="txtObservacoes" Placeholder="Observações"/>
 
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Data Final" FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
-                <DatePicker x:Name="dpFinal" Format="D"/>
-            </StackLayout>
+            <Label Text="Data de Início" FontAttributes="Bold" VerticalTextAlignment="Center" Margin="0,30,0,0"/>
+            <DatePicker x:Name="dpInicial" Format="D" Margin="30, 0, 0, 0"/>
+
+            <Label Text="Data Final" FontAttributes="Bold" VerticalTextAlignment="Center"/>
+            <DatePicker x:Name="dpFinal" Format="D" MinimumDate="{Binding Source={x:Reference dpInicial}, Path=Date}" Margin="30, 0, 0, 30"/>
 
             <StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Horário 1: " FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
-                    <TimePicker x:Name="tpHorario1" Format="T" PropertyChanged="tpHorario1_PropertyChanged"/>
-                    <Button x:Name="btnAddHorario" Text="Add Horários" CornerRadius="20" Clicked="btnAddHorario_Clicked" IsVisible="False"/>
+                    <TimePicker x:Name="tpHorario1" Format="T"/>
+                    <Button x:Name="btnAddHorario" Text="Add Horários" CornerRadius="20" Clicked="btnAddHorario_Clicked"/>
                 </StackLayout>
 
                 <StackLayout x:Name="stackLayout1" Orientation="Horizontal" IsVisible="false">
@@ -53,9 +51,7 @@
                 </StackLayout>
             </StackLayout>
 
-            <Editor x:Name="txtObservacoes" Placeholder="Observações Extras"/>
-
-            <Button x:Name="btnSalvar" Text="Salvar" CornerRadius="50" HorizontalOptions="Center" Clicked="btnSalvar_Clicked"/>
+            <Button x:Name="btnSalvar" Text="Salvar" CornerRadius="50" HorizontalOptions="Center" Margin="0,30,0,0" Clicked="btnSalvar_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using AppMedicine.Services;
 
 namespace AppMedicine.Views
 {
@@ -42,43 +43,51 @@ namespace AppMedicine.Views
 
         private void btnSalvar_Clicked(object sender, EventArgs e)
         {
-            ModelMedicine novoRemedio = new ModelMedicine();
-
-            string dataInicial = dpInicial.Date.ToString();
-			string dataFinal = dpFinal.Date.ToString();
-			string horario1 = tpHorario1.Time.ToString();
-
-			if(tpHorario2 != null)
+			try
 			{
-				string horario2 = tpHorario2.Time.ToString();
-				novoRemedio.horario2 = horario2;
-			}
-			if(tpHorario3 != null)
-			{
-				string horario3 = tpHorario3.Time.ToString();
-				novoRemedio.horario3 = horario3;
-			}
-			if(tpHorario4 != null)
-			{
-				string horario4 = tpHorario4.Time.ToString();
-				novoRemedio.horario4 = horario4;
-			}
+                ModelMedicine novoRemedio = new ModelMedicine();
 
-			novoRemedio.nomeRemedio = txtNomeRemedio.Text;
-			novoRemedio.quantidade = Convert.ToDecimal(txtQuantidade.Text);
-			novoRemedio.gotas_Comprimidos = pickerGotasComprimidos.SelectedItem.ToString();
-			novoRemedio.observacoes = txtObservacoes.Text;
-			novoRemedio.dataInicio = dataInicial;
-			novoRemedio.dataFinal = dataFinal;
-			novoRemedio.horario1 = horario1;
-        }
+                if (string.IsNullOrEmpty(txtQuantidade.Text))
+                    throw new Exception("Adicione a quantidade neccessária");
 
-        private void tpHorario1_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-			if(tpHorario1 != null)
-			{
-                btnAddHorario.IsVisible = true;
+                string dataInicial = dpInicial.Date.ToString();
+                string dataFinal = dpFinal.Date.ToString();
+                string horario1 = tpHorario1.Time.ToString();
+                string gotasComprimidos = pickerGotasComprimidos.SelectedItem.ToString();
+
+                if (tpHorario2 != null)
+                {
+                    string horario2 = tpHorario2.Time.ToString();
+                    novoRemedio.horario2 = horario2;
+                }
+                if (tpHorario3 != null)
+                {
+                    string horario3 = tpHorario3.Time.ToString();
+                    novoRemedio.horario3 = horario3;
+                }
+                if (tpHorario4 != null)
+                {
+                    string horario4 = tpHorario4.Time.ToString();
+                    novoRemedio.horario4 = horario4;
+                }
+
+                novoRemedio.nomeRemedio = txtNomeRemedio.Text;
+                novoRemedio.quantidade = Convert.ToDecimal(txtQuantidade.Text);
+                novoRemedio.gotas_Comprimidos = gotasComprimidos;
+                novoRemedio.observacoes = txtObservacoes.Text;
+                novoRemedio.dataInicio = dataInicial;
+                novoRemedio.dataFinal = dataFinal;
+                novoRemedio.horario1 = horario1;
+
+                ServiceDBMedicine remedio = new ServiceDBMedicine(App.DbPath);
+
+                remedio.Inserir(novoRemedio);
+                DisplayAlert("Inserção", remedio.StatusMessage, "OK");
             }
+			catch (Exception ex)
+			{
+                DisplayAlert("Erro:", ex.Message, "OK");
+			}
         }
     }
 }
