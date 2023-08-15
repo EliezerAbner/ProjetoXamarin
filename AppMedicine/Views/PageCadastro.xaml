@@ -10,7 +10,7 @@
             
             <StackLayout Orientation="Horizontal">
                 <Entry x:Name="txtQuantidade" Keyboard="Numeric" Placeholder="Insira a quantidade"/>
-                <Picker Title="Gotas/Comprimidos">
+                <Picker x:Name="pickerGotasComprimidos" Title="Gotas/Comprimidos">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
                             <x:String>Comprimidos</x:String>
@@ -22,36 +22,40 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Data de Início" FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
-                <DatePicker x:Name="dpInicial" Format="D" DateSelected="DateSelected"/>
+                <DatePicker x:Name="dpInicial" Format="D"/>
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Data Final" FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
-                <DatePicker x:Name="dpFinal" Format="D" DateSelected="DateSelected"/>
+                <DatePicker x:Name="dpFinal" Format="D"/>
             </StackLayout>
 
             <StackLayout>
-
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Horário 1: " FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
-                    <TimePicker x:Name="tpHorario1" Format="T"/>
+                    <TimePicker x:Name="tpHorario1" Format="T" PropertyChanged="tpHorario1_PropertyChanged"/>
+                    <Button x:Name="btnAddHorario" Text="Add Horários" CornerRadius="20" Clicked="btnAddHorario_Clicked" IsVisible="False"/>
                 </StackLayout>
-                
-                <ListView ItemsSource="{Binding Names}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Label Text="{Binding lblName}"/>
-                                <TimePicker x:Name="{Binding count}" Format="T"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+
+                <StackLayout x:Name="stackLayout1" Orientation="Horizontal" IsVisible="false">
+                    <Label Text="Horário 2: " FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
+                    <TimePicker x:Name="tpHorario2" Format="T"/>
+                </StackLayout>
+
+                <StackLayout x:Name="stackLayout2" Orientation="Horizontal" IsVisible="false">
+                    <Label Text="Horário 3: " FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
+                    <TimePicker x:Name="tpHorario3" Format="T"/>
+                </StackLayout>
+
+                <StackLayout x:Name="stackLayout3" Orientation="Horizontal" IsVisible="false">
+                    <Label Text="Horário 4: " FontAttributes="Bold" FontSize="22" VerticalTextAlignment="Center"/>
+                    <TimePicker x:Name="tpHorario4" Format="T" />
+                </StackLayout>
             </StackLayout>
 
-            <Button x:Name="btnAddHorarios" Text="Adicionar Horários" FontAttributes="Bold" CornerRadius="20" Clicked="btnAddHorarios_Clicked"/>
-
             <Editor x:Name="txtObservacoes" Placeholder="Observações Extras"/>
+
+            <Button x:Name="btnSalvar" Text="Salvar" CornerRadius="50" HorizontalOptions="Center" Clicked="btnSalvar_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

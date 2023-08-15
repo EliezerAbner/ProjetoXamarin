@@ -28,7 +28,7 @@ namespace AppMedicine.Services
                     throw new Exception("Insforme a data inicial");
                 if (string.IsNullOrEmpty(medicine.dataFinal))
                     throw new Exception("Informe a data final");
-                if (string.IsNullOrEmpty(medicine.horarios))
+                if (string.IsNullOrEmpty(medicine.horario1))
                     throw new Exception("Insira pelo menos 1 horário");
 
                 int result = conn.Insert(medicine);
@@ -63,7 +63,7 @@ namespace AppMedicine.Services
                     throw new Exception("Insforme a data inicial");
                 if (string.IsNullOrEmpty(medicine.dataFinal))
                     throw new Exception("Informe a data final");
-                if (string.IsNullOrEmpty(medicine.horarios))
+                if (string.IsNullOrEmpty(medicine.horario1))
                     throw new Exception("Insira pelo menos 1 horário");
                 if (medicine.id == 0)
                     throw new Exception("Id não informado");

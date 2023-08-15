@@ -13,7 +13,7 @@ namespace AppMedicine.Models
         [NotNull]
         public string nomeRemedio { get; set; }
         [NotNull]
-        public float quantidade { get; set; }
+        public decimal quantidade { get; set; }
         [NotNull]
         public string gotas_Comprimidos { get; set; }
         [NotNull]
@@ -22,8 +22,10 @@ namespace AppMedicine.Models
         public string dataFinal { get; set; }
         public string observacoes { get; set; }
         [NotNull]
-        public string horarios { get; set; }
-        
+        public string horario1 { get; set; }
+        public string horario2 { get; set; }
+        public string horario3 { get; set; }
+        public string horario4 { get; set; }
 
         public ModelMedicine()
         {
@@ -33,7 +35,10 @@ namespace AppMedicine.Models
             this.dataInicio = "";
             this.dataFinal = "";
             this.observacoes = "";
-            this.horarios = "";
+            this.horario1 = "";
+            this.horario2 = "";
+            this.horario3 = "";
+            this.horario4 = "";
         }
     }
 }
