@@ -1,12 +1,83 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppMedicine.Views.PageLista">
+             x:Class="AppMedicine.Views.PageLista"
+             Title="Todos os Remédios">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            
+            <StackLayout>
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItems>
+                            <SwipeItem Text="Apagar" IconImageSource="trash" BackgroundColor="LightPink"/>
+                        </SwipeItems>
+                    </SwipeView.LeftItems>
+
+                    <SwipeView.RightItems>
+                        <SwipeItems>
+                            <SwipeItem Text="Editar" IconImageSource="pencil" BackgroundColor="GreenYellow"/>
+                        </SwipeItems>
+                    </SwipeView.RightItems>
+
+                    <Grid HeightRequest="90" WidthRequest="300" BackgroundColor="LightGray">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="75"/>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="lblNomeRemedio" 
+                               Grid.Row="0"
+                               Text="NOME DO REMÉDIO"
+                               FontSize="20"
+                               VerticalTextAlignment="Center"
+                               TextColor="Black"
+                               Grid.ColumnSpan="4"/>
+                        
+                        <Label x:Name="lblHorario1" 
+                               Grid.Row="1"
+                               Grid.Column="0"
+                               Text="00:00"
+                               FontSize="20"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+                        
+                        <Label x:Name="lblHorario2" 
+                               IsVisible="False"
+                               Grid.Row="1" 
+                               Grid.Column="1"
+                               Text="00:00"
+                               FontSize="20"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+
+                        <Label x:Name="lblHorario3" 
+                               IsVisible="False"
+                               Grid.Row="1"
+                               Grid.Column="2"
+                               Text="00:00"
+                               FontSize="20"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+
+                        <Label x:Name="lblHorario4"
+                               IsVisible="False"
+                               Grid.Row="1"
+                               Grid.Column="3"
+                               Text="00:00"
+                               FontSize="20"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               TextColor="Black"/>
+                    </Grid>
+                    
+                </SwipeView>
+            </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
