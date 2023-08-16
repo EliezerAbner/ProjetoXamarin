@@ -10,13 +10,13 @@
                 <SwipeView>
                     <SwipeView.LeftItems>
                         <SwipeItems>
-                            <SwipeItem Text="Apagar" IconImageSource="trash" BackgroundColor="LightPink"/>
+                            <SwipeItem x:Name="btnApagar" Text="Apagar" IconImageSource="trash" BackgroundColor="LightPink" Clicked="btnApagar_Clicked"/>
                         </SwipeItems>
                     </SwipeView.LeftItems>
 
                     <SwipeView.RightItems>
                         <SwipeItems>
-                            <SwipeItem Text="Editar" IconImageSource="pencil" BackgroundColor="GreenYellow"/>
+                            <SwipeItem x:Name="btnEditar" Text="Editar" IconImageSource="pencil" BackgroundColor="GreenYellow" Clicked="btnEditar_Clicked"/>
                         </SwipeItems>
                     </SwipeView.RightItems>
 
@@ -29,7 +29,7 @@
                         </Grid.ColumnDefinitions>
                         <Label x:Name="lblNomeRemedio" 
                                Grid.Row="0"
-                               Text="NOME DO REMÉDIO"
+                               Text="{Binding nomeRemedio, StringFormat='{0}'}"
                                FontSize="20"
                                VerticalTextAlignment="Center"
                                TextColor="Black"

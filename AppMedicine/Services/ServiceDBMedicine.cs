@@ -18,6 +18,21 @@ namespace AppMedicine.Services
             conn.CreateTable<ModelMedicine>();
         }
 
+        public List<ModelMedicine> Listar() 
+        {
+            List<ModelMedicine> list = new List<ModelMedicine>();
+            try
+            {
+                list = conn.Table<ModelMedicine>().ToList();
+                this.StatusMessage = "Listando Remédios";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return list;
+        }
+
         public void Inserir(ModelMedicine medicine)
         {
             try
