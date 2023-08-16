@@ -29,21 +29,45 @@ namespace AppMedicine.Views
 
             for(int i = 0; i < lista.Count; i++)
             {
+                lista[i].strHorario1 = lista[i].horario1.ToString().Remove(5);
+
                 if (lista[i].horario2 != padrao)
                 {
-                    
+                    lista[i].h2 = true;
+                    lista[i].strHorario2 = lista[i].horario2.ToString().Remove(5);
                 }
+                if (lista[i].horario3 != padrao)
+                {
+                    lista[i].h3 = true;
+                    lista[i].strHorario3 = lista[i].horario3.ToString().Remove(5);
+                }
+                if (lista[i].horario4 != padrao)
+                {
+                    lista[i].h4 = true;
+                    lista[i].strHorario4 = lista[i].horario4.ToString().Remove(5);
+                }
+
+                ListaRemedios.ItemsSource = lista;
             }
         }
 
         private void btnEditar_Clicked(object sender, EventArgs e)
         {
-
+            ModelMedicine editar = (ModelMedicine)ListaRemedios.SelectedItem;
+            MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
+            p.Detail = new NavigationPage(new PageCadastro(editar));
         }
 
         private void btnApagar_Clicked(object sender, EventArgs e)
         {
+            DisplayAlert("Teste", "ola", "OK", "UwU");
+        }
 
+        private void ListaRemedios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            ModelMedicine editar = (ModelMedicine)ListaRemedios.SelectedItem;
+            MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
+            p.Detail = new NavigationPage(new PageCadastro(editar));
         }
     }
 }

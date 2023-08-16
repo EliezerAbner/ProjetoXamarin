@@ -26,6 +26,13 @@ namespace AppMedicine.Models
         public TimeSpan horario2 { get; set; }
         public TimeSpan horario3 { get; set; }
         public TimeSpan horario4 { get; set; }
+        public bool h2 { get; set; }
+        public bool h3 { get; set; }
+        public bool h4 { get; set; }
+        public string strHorario1 { get; set; }
+        public string strHorario2 { get; set; }
+        public string strHorario3 { get; set; }
+        public string strHorario4 { get; set; }
 
         public ModelMedicine()
         {
@@ -39,6 +46,13 @@ namespace AppMedicine.Models
             this.horario2 = new TimeSpan(0, 0, 3);
             this.horario3 = new TimeSpan(0, 0, 3);
             this.horario4 = new TimeSpan(0, 0, 3);
+            this.h2 = false;
+            this.h3 = false;
+            this.h4 = false;
+            this.strHorario1 = "";
+            this.strHorario2 = "";
+            this.strHorario3 = "";
+            this.strHorario4 = "";
         }
     }
 }

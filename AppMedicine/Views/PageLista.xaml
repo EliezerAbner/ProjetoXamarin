@@ -6,11 +6,14 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <ListView x:Name="ListaRemedios" HasUnevenRows="True" SeparatorColor="Red">
+            <ListView x:Name="ListaRemedios" HasUnevenRows="True" SeparatorColor="Red" ItemSelected="ListaRemedios_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
+
+                                <Label Text="{Binding id}"/>
+
                                 <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems>
@@ -21,9 +24,10 @@
                                     <SwipeView.RightItems>
                                         <SwipeItems>
                                             <SwipeItem x:Name="btnEditar" Text="Editar" IconImageSource="pencil" BackgroundColor="GreenYellow" Clicked="btnEditar_Clicked"/>
+                                            <SwipeItem x:Name="swId" Text="{Binding Source={Reference lblId}, Path=Text}" IsVisible="True"/>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
-
+                
                                     <Grid HeightRequest="90" WidthRequest="300" BackgroundColor="LightGray">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="75"/>
@@ -31,48 +35,55 @@
                                             <ColumnDefinition Width="75"/>
                                             <ColumnDefinition Width="75"/>
                                         </Grid.ColumnDefinitions>
+                                        
                                         <Label x:Name="lblNomeRemedio" 
                                             Grid.Row="0"
                                             Text="{Binding nomeRemedio}"
                                             FontSize="20"
                                             VerticalTextAlignment="Center"
                                             TextColor="Black"
-                                            Grid.ColumnSpan="4"/>   
+                                            Grid.ColumnSpan="4"/>
+
+                                        <Label x:Name="lblId"
+                                               IsVisible="false"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="{Binding id}"/>
 
                                         <Label x:Name="lblHorario1" 
                                             Grid.Row="1"
                                             Grid.Column="0"
-                                            Text="{Binding horario1}"
+                                            Text="{Binding strHorario1}"
                                             FontSize="20"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Center"
                                             TextColor="Black"/>
 
                                         <Label x:Name="lblHorario2" 
-                                            IsVisible="False"
+                                            IsVisible="{Binding h2}"
                                             Grid.Row="1" 
                                             Grid.Column="1"
-                                            Text="{Binding horario2}"
+                                            Text="{Binding strHorario2}"
                                             FontSize="20"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Center"
                                             TextColor="Black"/>
 
                                         <Label x:Name="lblHorario3" 
-                                            IsVisible="False"
+                                            IsVisible="{Binding h3}"
                                             Grid.Row="1"
                                             Grid.Column="2"
-                                            Text="{Binding horario3}"
+                                            Text="{Binding strHorario3}"
                                             FontSize="20"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Center"
                                             TextColor="Black"/>
 
                                         <Label x:Name="lblHorario4"
-                                            IsVisible="False"
+                                            IsVisible="{Binding h4}"
                                             Grid.Row="1"
                                             Grid.Column="3"
-                                            Text="{Binding horario4}"
+                                            Text="{Binding strHorario4}"
                                             FontSize="20"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Center"
