@@ -17,12 +17,13 @@ namespace AppMedicine.Views
 		{
 			InitializeComponent ();
             atualizarLista();
+
 		}
 
         private void atualizarLista()
         {
             ServiceDBMedicine listaRemedio = new ServiceDBMedicine(App.DbPath);
-            listaRemedio.Listar();
+            ListaRemedios.ItemsSource = listaRemedio.Listar();
         }
 
         private void btnEditar_Clicked(object sender, EventArgs e)

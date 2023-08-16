@@ -22,10 +22,10 @@ namespace AppMedicine.Models
         public string dataFinal { get; set; }
         public string observacoes { get; set; }
         [NotNull]
-        public string horario1 { get; set; }
-        public string horario2 { get; set; }
-        public string horario3 { get; set; }
-        public string horario4 { get; set; }
+        public TimeSpan horario1 { get; set; }
+        public TimeSpan horario2 { get; set; }
+        public TimeSpan horario3 { get; set; }
+        public TimeSpan horario4 { get; set; }
 
         public ModelMedicine()
         {
@@ -35,10 +35,10 @@ namespace AppMedicine.Models
             this.dataInicio = "";
             this.dataFinal = "";
             this.observacoes = "";
-            this.horario1 = "";
-            this.horario2 = "";
-            this.horario3 = "";
-            this.horario4 = "";
+            this.horario1 = new TimeSpan(0, 0, 3);
+            this.horario2 = new TimeSpan(0, 0, 3);
+            this.horario3 = new TimeSpan(0, 0, 3);
+            this.horario4 = new TimeSpan(0, 0, 3);
         }
     }
 }

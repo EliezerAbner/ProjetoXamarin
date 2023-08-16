@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppMedicine.Services;
+using System.Xml;
 
 namespace AppMedicine.Views
 {
@@ -16,10 +17,36 @@ namespace AppMedicine.Views
 	public partial class PageCadastro : ContentPage
 	{
         public int counter = 0;
+        public TimeSpan padrao = new TimeSpan(0, 0, 3);
+
 		public PageCadastro ()
 		{
 			InitializeComponent ();
+            tpHorario2.Time = padrao;
+            tpHorario3.Time = padrao;
+            tpHorario4.Time = padrao;
 		}
+
+        public PageCadastro(ModelMedicine remedio)
+        {
+            txtCodigo.Text = remedio.id.ToString();
+            txtNomeRemedio.Text = remedio.nomeRemedio;
+            txtQuantidade.Text = remedio.quantidade.ToString();
+            pickerGotasComprimidos.SelectedItem = remedio.gotas_Comprimidos;
+            txtObservacoes.Text = remedio.observacoes;
+            dpInicial.Date = Convert.ToDateTime(remedio.dataInicio);
+            dpFinal.Date = Convert.ToDateTime(remedio.dataFinal);
+            tpHorario1.Time = remedio.horario1;
+
+            if(remedio.horario2 != padrao)
+                tpHorario2.Time = remedio.horario2;
+            if(remedio.horario3 != padrao)
+                tpHorario3.Time = remedio.horario3;
+            if(remedio.horario4 != padrao)
+                tpHorario4.Time = remedio.horario4;
+
+            btnSalvar.Text = "Alterar";
+        }
 
         private void btnAddHorario_Clicked(object sender, EventArgs e)
         {
@@ -52,23 +79,21 @@ namespace AppMedicine.Views
 
                 string dataInicial = dpInicial.Date.ToString();
                 string dataFinal = dpFinal.Date.ToString();
-                string horario1 = tpHorario1.Time.ToString();
                 string gotasComprimidos = pickerGotasComprimidos.SelectedItem.ToString();
 
-                if (tpHorario2 != null)
+                novoRemedio.horario1 = tpHorario1.Time;
+
+                if (tpHorario2.Time != padrao)
                 {
-                    string horario2 = tpHorario2.Time.ToString();
-                    novoRemedio.horario2 = horario2;
+                    novoRemedio.horario2 = tpHorario2.Time;
                 }
-                if (tpHorario3 != null)
+                if (tpHorario3.Time != padrao)
                 {
-                    string horario3 = tpHorario3.Time.ToString();
-                    novoRemedio.horario3 = horario3;
+                    novoRemedio.horario3 = tpHorario3.Time;
                 }
-                if (tpHorario4 != null)
+                if (tpHorario4.Time != padrao)
                 {
-                    string horario4 = tpHorario4.Time.ToString();
-                    novoRemedio.horario4 = horario4;
+                    novoRemedio.horario4 = tpHorario4.Time;
                 }
 
                 novoRemedio.nomeRemedio = txtNomeRemedio.Text;
@@ -77,7 +102,6 @@ namespace AppMedicine.Views
                 novoRemedio.observacoes = txtObservacoes.Text;
                 novoRemedio.dataInicio = dataInicial;
                 novoRemedio.dataFinal = dataFinal;
-                novoRemedio.horario1 = horario1;
 
                 ServiceDBMedicine remedio = new ServiceDBMedicine(App.DbPath);
 

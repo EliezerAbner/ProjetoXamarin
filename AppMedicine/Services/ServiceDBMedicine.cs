@@ -20,17 +20,17 @@ namespace AppMedicine.Services
 
         public List<ModelMedicine> Listar() 
         {
-            List<ModelMedicine> list = new List<ModelMedicine>();
+            List<ModelMedicine> l = new List<ModelMedicine>();
             try
             {
-                list = conn.Table<ModelMedicine>().ToList();
+                l = conn.Table<ModelMedicine>().ToList();
                 this.StatusMessage = "Listando Remédios";
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return list;
+            return l;
         }
 
         public void Inserir(ModelMedicine medicine)
@@ -45,7 +45,7 @@ namespace AppMedicine.Services
                     throw new Exception("Insforme a data inicial");
                 if (string.IsNullOrEmpty(medicine.dataFinal))
                     throw new Exception("Informe a data final");
-                if (string.IsNullOrEmpty(medicine.horario1))
+                if (medicine.horario1 == new TimeSpan(0,0,3))
                     throw new Exception("Insira pelo menos 1 horário");
 
                 int result = conn.Insert(medicine);
@@ -80,7 +80,7 @@ namespace AppMedicine.Services
                     throw new Exception("Insforme a data inicial");
                 if (string.IsNullOrEmpty(medicine.dataFinal))
                     throw new Exception("Informe a data final");
-                if (string.IsNullOrEmpty(medicine.horario1))
+                if (medicine.horario1 == new TimeSpan(0, 0, 3))
                     throw new Exception("Insira pelo menos 1 horário");
                 if (medicine.id == 0)
                     throw new Exception("Id não informado");

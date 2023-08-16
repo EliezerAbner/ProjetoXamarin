@@ -5,79 +5,89 @@
              Title="Todos os Remédios">
     <ContentPage.Content>
         <StackLayout>
+
+            <ListView x:Name="ListaRemedios" HasUnevenRows="True" SeparatorColor="Red">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <SwipeView>
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems>
+                                            <SwipeItem x:Name="btnApagar" Text="Apagar" IconImageSource="trash" BackgroundColor="LightPink" Clicked="btnApagar_Clicked"/>
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem x:Name="btnEditar" Text="Editar" IconImageSource="pencil" BackgroundColor="GreenYellow" Clicked="btnEditar_Clicked"/>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <Grid HeightRequest="90" WidthRequest="300" BackgroundColor="LightGray">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="75"/>
+                                            <ColumnDefinition Width="75"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label x:Name="lblNomeRemedio" 
+                                            Grid.Row="0"
+                                            Text="{Binding nomeRemedio}"
+                                            FontSize="20"
+                                            VerticalTextAlignment="Center"
+                                            TextColor="Black"
+                                            Grid.ColumnSpan="4"/>   
+
+                                        <Label x:Name="lblHorario1" 
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Text="{Binding horario1}"
+                                            FontSize="20"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Center"
+                                            TextColor="Black"/>
+
+                                        <Label x:Name="lblHorario2" 
+                                            IsVisible="False"
+                                            Grid.Row="1" 
+                                            Grid.Column="1"
+                                            Text="{Binding horario2}"
+                                            FontSize="20"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Center"
+                                            TextColor="Black"/>
+
+                                        <Label x:Name="lblHorario3" 
+                                            IsVisible="False"
+                                            Grid.Row="1"
+                                            Grid.Column="2"
+                                            Text="{Binding horario3}"
+                                            FontSize="20"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Center"
+                                            TextColor="Black"/>
+
+                                        <Label x:Name="lblHorario4"
+                                            IsVisible="False"
+                                            Grid.Row="1"
+                                            Grid.Column="3"
+                                            Text="{Binding horario4}"
+                                            FontSize="20"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Center"
+                                            TextColor="Black"/>
+                                    </Grid>
+
+                                </SwipeView>
+                            </StackLayout> 
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             
-            <StackLayout>
-                <SwipeView>
-                    <SwipeView.LeftItems>
-                        <SwipeItems>
-                            <SwipeItem x:Name="btnApagar" Text="Apagar" IconImageSource="trash" BackgroundColor="LightPink" Clicked="btnApagar_Clicked"/>
-                        </SwipeItems>
-                    </SwipeView.LeftItems>
 
-                    <SwipeView.RightItems>
-                        <SwipeItems>
-                            <SwipeItem x:Name="btnEditar" Text="Editar" IconImageSource="pencil" BackgroundColor="GreenYellow" Clicked="btnEditar_Clicked"/>
-                        </SwipeItems>
-                    </SwipeView.RightItems>
-
-                    <Grid HeightRequest="90" WidthRequest="300" BackgroundColor="LightGray">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
-                            <ColumnDefinition Width="75"/>
-                        </Grid.ColumnDefinitions>
-                        <Label x:Name="lblNomeRemedio" 
-                               Grid.Row="0"
-                               Text="{Binding nomeRemedio, StringFormat='{0}'}"
-                               FontSize="20"
-                               VerticalTextAlignment="Center"
-                               TextColor="Black"
-                               Grid.ColumnSpan="4"/>
-                        
-                        <Label x:Name="lblHorario1" 
-                               Grid.Row="1"
-                               Grid.Column="0"
-                               Text="00:00"
-                               FontSize="20"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               TextColor="Black"/>
-                        
-                        <Label x:Name="lblHorario2" 
-                               IsVisible="False"
-                               Grid.Row="1" 
-                               Grid.Column="1"
-                               Text="00:00"
-                               FontSize="20"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               TextColor="Black"/>
-
-                        <Label x:Name="lblHorario3" 
-                               IsVisible="False"
-                               Grid.Row="1"
-                               Grid.Column="2"
-                               Text="00:00"
-                               FontSize="20"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               TextColor="Black"/>
-
-                        <Label x:Name="lblHorario4"
-                               IsVisible="False"
-                               Grid.Row="1"
-                               Grid.Column="3"
-                               Text="00:00"
-                               FontSize="20"
-                               VerticalTextAlignment="Center"
-                               HorizontalTextAlignment="Center"
-                               TextColor="Black"/>
-                    </Grid>
-                    
-                </SwipeView>
-            </StackLayout>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
