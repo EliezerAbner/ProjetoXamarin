@@ -13,7 +13,8 @@ namespace AppMedicine.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PageLista : ContentPage
 	{
-		public PageLista ()
+
+        public PageLista ()
 		{
 			InitializeComponent ();
             atualizarLista();
@@ -46,28 +47,31 @@ namespace AppMedicine.Views
                     lista[i].h4 = true;
                     lista[i].strHorario4 = lista[i].horario4.ToString().Remove(5);
                 }
-
-                ListaRemedios.ItemsSource = lista;
             }
+
+            ListaRemedios.ItemsSource = lista;
         }
 
         private void btnEditar_Clicked(object sender, EventArgs e)
         {
-            ModelMedicine editar = (ModelMedicine)ListaRemedios.SelectedItem;
+            var editarBtn = sender as MenuItem;
+            var remedios = editarBtn.CommandParameter as ModelMedicine;
             MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
-            p.Detail = new NavigationPage(new PageCadastro(editar));
+            p.Detail = new NavigationPage(new PageCadastro(remedios));
         }
 
-        private void btnApagar_Clicked(object sender, EventArgs e)
+        private async void btnApagar_Clicked(object sender, EventArgs e)
         {
-            DisplayAlert("Teste", "ola", "OK", "UwU");
-        }
+            var apagarBtn = sender as MenuItem;
+            var apagarRemedio = apagarBtn.CommandParameter as ModelMedicine;
 
-        private void ListaRemedios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            ModelMedicine editar = (ModelMedicine)ListaRemedios.SelectedItem;
-            MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
-            p.Detail = new NavigationPage(new PageCadastro(editar));
+            var resp = await DisplayAlert("Excluir", "Deseja realmente excluir esse remédio?", "Sim", "Não");
+            if (resp)
+            {
+                ServiceDBMedicine apagar = new ServiceDBMedicine(App.DbPath);
+                apagar.Excluir(apagarRemedio.id);
+                atualizarLista();
+            }   
         }
     }
 }

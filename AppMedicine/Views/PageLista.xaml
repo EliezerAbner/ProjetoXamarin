@@ -6,25 +6,31 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <ListView x:Name="ListaRemedios" HasUnevenRows="True" SeparatorColor="Red" ItemSelected="ListaRemedios_ItemSelected">
+            <ListView x:Name="ListaRemedios" HasUnevenRows="True" SeparatorColor="Red">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout>
-
-                                <Label Text="{Binding id}"/>
-
                                 <SwipeView>
                                     <SwipeView.LeftItems>
                                         <SwipeItems>
-                                            <SwipeItem x:Name="btnApagar" Text="Apagar" IconImageSource="trash" BackgroundColor="LightPink" Clicked="btnApagar_Clicked"/>
+                                            <SwipeItem x:Name="btnApagar" 
+                                                       Text="Apagar" 
+                                                       IconImageSource="trash" 
+                                                       BackgroundColor="LightPink" 
+                                                       Clicked="btnApagar_Clicked" 
+                                                       CommandParameter="{Binding .}"/> 
                                         </SwipeItems>
                                     </SwipeView.LeftItems>
 
                                     <SwipeView.RightItems>
                                         <SwipeItems>
-                                            <SwipeItem x:Name="btnEditar" Text="Editar" IconImageSource="pencil" BackgroundColor="GreenYellow" Clicked="btnEditar_Clicked"/>
-                                            <SwipeItem x:Name="swId" Text="{Binding Source={Reference lblId}, Path=Text}" IsVisible="True"/>
+                                            <SwipeItem x:Name="btnEditar" 
+                                                       Text="Editar" 
+                                                       IconImageSource="pencil" 
+                                                       BackgroundColor="GreenYellow" 
+                                                       Clicked="btnEditar_Clicked" 
+                                                       CommandParameter="{Binding .}"/>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
                 

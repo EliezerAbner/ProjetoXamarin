@@ -27,23 +27,23 @@ namespace AppMedicine.Views
             tpHorario4.Time = padrao;
 		}
 
-        public PageCadastro(ModelMedicine remedio)
+        public PageCadastro(ModelMedicine teste)
         {
-            txtCodigo.Text = remedio.id.ToString();
-            txtNomeRemedio.Text = remedio.nomeRemedio;
-            txtQuantidade.Text = remedio.quantidade.ToString();
-            pickerGotasComprimidos.SelectedItem = remedio.gotas_Comprimidos;
-            txtObservacoes.Text = remedio.observacoes;
-            dpInicial.Date = Convert.ToDateTime(remedio.dataInicio);
-            dpFinal.Date = Convert.ToDateTime(remedio.dataFinal);
-            tpHorario1.Time = remedio.horario1;
+            txtCodigo.Text = teste.id.ToString();
+            txtNomeRemedio.Text = teste.nomeRemedio;
+            txtQuantidade.Text = teste.quantidade.ToString();
+            pickerGotasComprimidos.SelectedItem = teste.gotas_Comprimidos;
+            txtObservacoes.Text = teste.observacoes;
+            dpInicial.Date = Convert.ToDateTime(teste.dataInicio);
+            dpFinal.Date = Convert.ToDateTime(teste.dataFinal);
+            tpHorario1.Time = teste.horario1;
 
-            if(remedio.horario2 != padrao)
-                tpHorario2.Time = remedio.horario2;
-            if(remedio.horario3 != padrao)
-                tpHorario3.Time = remedio.horario3;
-            if(remedio.horario4 != padrao)
-                tpHorario4.Time = remedio.horario4;
+            if(teste.horario2 != padrao)
+                tpHorario2.Time = teste.horario2;
+            if(teste.horario3 != padrao)
+                tpHorario3.Time = teste.horario3;
+            if(teste.horario4 != padrao)
+                tpHorario4.Time = teste.horario4;
 
             btnSalvar.Text = "Alterar";
         }
