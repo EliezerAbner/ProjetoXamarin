@@ -28,3 +28,9 @@ using Android.App;
 // Add some common permissions, these can be removed if not needed
 [assembly: UsesPermission(Android.Manifest.Permission.Internet)]
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
+[assembly: UsesPermission(Android.Manifest.Permission.WakeLock)]
+[assembly: UsesPermission(Android.Manifest.Permission.ReceiveBootCompleted)]
+[assembly: UsesPermission(Android.Manifest.Permission.Vibrate)]
+
+[assembly: UsesPermission("android.permission.SCHEDULE_EXACT_ALARM")]
+[assembly: UsesPermission("android.permission.POST_NOTIFICATIONS")]

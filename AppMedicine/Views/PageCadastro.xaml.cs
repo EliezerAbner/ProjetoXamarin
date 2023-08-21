@@ -10,6 +10,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using AppMedicine.Services;
 using System.Xml;
+using Plugin.LocalNotification;
 
 namespace AppMedicine.Views
 {
@@ -18,6 +19,7 @@ namespace AppMedicine.Views
 	{
         public int counter = 0;
         public TimeSpan padrao = new TimeSpan(0, 0, 3);
+        public int notificationCounter = 0;
 
 		public PageCadastro ()
 		{
@@ -29,6 +31,7 @@ namespace AppMedicine.Views
 
         public PageCadastro(ModelMedicine teste)
         {
+            InitializeComponent();
             txtCodigo.Text = teste.id.ToString();
             txtNomeRemedio.Text = teste.nomeRemedio;
             txtQuantidade.Text = teste.quantidade.ToString();
@@ -82,18 +85,22 @@ namespace AppMedicine.Views
                 string gotasComprimidos = pickerGotasComprimidos.SelectedItem.ToString();
 
                 novoRemedio.horario1 = tpHorario1.Time;
+                AddNotification(txtNomeRemedio.Text, tpHorario1.Time);
 
                 if (tpHorario2.Time != padrao)
                 {
                     novoRemedio.horario2 = tpHorario2.Time;
+                    AddNotification(txtNomeRemedio.Text, tpHorario2.Time);
                 }
                 if (tpHorario3.Time != padrao)
                 {
                     novoRemedio.horario3 = tpHorario3.Time;
+                    AddNotification(txtNomeRemedio.Text, tpHorario3.Time);
                 }
                 if (tpHorario4.Time != padrao)
                 {
                     novoRemedio.horario4 = tpHorario4.Time;
+                    AddNotification(txtNomeRemedio.Text, tpHorario4.Time);
                 }
 
                 novoRemedio.nomeRemedio = txtNomeRemedio.Text;
@@ -107,11 +114,41 @@ namespace AppMedicine.Views
 
                 remedio.Inserir(novoRemedio);
                 DisplayAlert("Inserção", remedio.StatusMessage, "OK");
+
+                MasterDetailPage p = (MasterDetailPage)Application.Current.MainPage;
+                p.Detail = new NavigationPage(new PagePrincipal());
             }
 			catch (Exception ex)
 			{
                 DisplayAlert("Erro:", ex.Message, "OK");
 			}
+        }
+
+        private DateTime tsToDtConversor(TimeSpan oldValue)
+        {
+            DateTime newValue = DateTime.Today;
+            newValue = newValue + oldValue;
+
+            return newValue;
+        }
+
+        private void AddNotification(string nomeRemedio, TimeSpan horario)
+        {
+            notificationCounter++;
+
+            var notificationH1 = new NotificationRequest
+            {
+                NotificationId = notificationCounter,
+                Title = "Hora de tomar remédio",
+                Description = string.Format("Hora de tomar {0}", nomeRemedio),
+                //ReturningData = "Dummy data", Returning data when tapped on notification.
+                Schedule =
+                {
+                    NotifyTime = tsToDtConversor(horario),
+                    RepeatType = NotificationRepeat.Daily
+                }
+            };
+            LocalNotificationCenter.Current.Show(notificationH1);
         }
     }
 }

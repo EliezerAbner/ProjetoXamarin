@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AppMedicine.Models;
 using AppMedicine.Services;
+using Plugin.LocalNotification;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -60,7 +61,7 @@ namespace AppMedicine.Views
             p.Detail = new NavigationPage(new PageCadastro(remedios));
         }
 
-        private async void btnApagar_Clicked(object sender, EventArgs e)
+        async void btnApagar_Clicked(object sender, EventArgs e)
         {
             var apagarBtn = sender as MenuItem;
             var apagarRemedio = apagarBtn.CommandParameter as ModelMedicine;
